@@ -1,0 +1,6 @@
+{
+  "name": "לוח משרות והתאמת קורות חיים",
+  "description": "מערכת ניהול והתאמת קורות חיים אישית למשרות, מעקב תהליכי גיוס ושלבי הכנה.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
