@@ -21,10 +21,10 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           ref={ref}
           disabled={disabled}
           className={cx(
-            'w-full appearance-none bg-white dark:bg-slate-900 border rounded-lg py-2 pr-3 pl-8 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors disabled:opacity-50 disabled:bg-slate-50 cursor-pointer',
+            'w-full appearance-none bg-cv-surface  border rounded-lg py-2 pr-3 pl-8 text-sm text-cv-text  focus:outline-none focus:ring-2 focus:ring-cv-focus focus:border-cv-field-focus transition-colors disabled:opacity-50 disabled:bg-cv-surface-muted cursor-pointer',
             isInvalid
-              ? 'border-rose-300 dark:border-rose-700'
-              : 'border-slate-200 dark:border-slate-700',
+              ? 'border-cv-blocker '
+              : 'border-cv-border ',
             className
           )}
           {...props}
@@ -34,13 +34,13 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
               key={option.value}
               value={option.value}
               disabled={option.disabled}
-              className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100"
+              className="bg-cv-surface text-cv-text"
             >
               {option.label}
             </option>
           ))}
         </select>
-        <div className="absolute left-2.5 pointer-events-none text-slate-400">
+        <div className="absolute left-2.5 pointer-events-none text-cv-text-muted">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>

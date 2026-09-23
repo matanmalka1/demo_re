@@ -31,7 +31,7 @@ export const ApplicationCardsView: React.FC<ApplicationCardsViewProps> = ({
         <div
           key={app.id}
           onClick={() => onOpenApplication(app)}
-          className="group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 p-5 flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-xs transition-all cursor-pointer"
+          className="group bg-cv-surface rounded-2xl border border-cv-border/80 p-5 flex flex-col justify-between hover:border-cv-border hover:shadow-xs transition-all cursor-pointer"
         >
           {/* Header Row */}
           <div>
@@ -55,7 +55,7 @@ export const ApplicationCardsView: React.FC<ApplicationCardsViewProps> = ({
             </div>
 
             {/* Statuses and Progress */}
-            <div className="mb-4 bg-slate-50/70 dark:bg-slate-800/40 p-3 rounded-xl border border-slate-100 dark:border-slate-800/80">
+            <div className="mb-4 bg-cv-surface-muted/70 p-3 rounded-xl border border-cv-border">
               <ApplicationListStatuses
                 preparationStage={app.preparationStage}
                 recruitmentStage={app.recruitmentStage}
@@ -65,16 +65,16 @@ export const ApplicationCardsView: React.FC<ApplicationCardsViewProps> = ({
 
             {/* Next Action Box */}
             {app.nextAction ? (
-              <div className="mb-4 p-3 rounded-xl border border-indigo-100 dark:border-indigo-900/50 bg-indigo-50/50 dark:bg-indigo-950/30 flex items-center justify-between gap-2">
+              <div className="mb-4 p-3 rounded-xl border border-cv-accent bg-cv-accent-soft flex items-center justify-between gap-2">
                 <div className="min-w-0 flex-1">
-                  <span className="text-[11px] font-semibold text-indigo-700 dark:text-indigo-400 block mb-0.5">
+                  <span className="text-[11px] font-semibold text-cv-accent block mb-0.5">
                     פעולה מומלצת הבאה
                   </span>
-                  <p className="text-xs font-semibold text-slate-900 dark:text-slate-100 truncate">
+                  <p className="text-xs font-semibold text-cv-text truncate">
                     {app.nextAction.title}
                   </p>
                   {app.nextAction.description && (
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">
+                    <p className="text-[11px] text-cv-text-muted truncate">
                       {app.nextAction.description}
                     </p>
                   )}
@@ -93,7 +93,7 @@ export const ApplicationCardsView: React.FC<ApplicationCardsViewProps> = ({
                     <button
                       type="button"
                       onClick={() => onClearNextAction(app.id)}
-                      className="p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
+                      className="p-1 text-cv-text-muted hover:text-cv-text-muted transition-colors"
                       title="נקה פעולה"
                     >
                       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -104,20 +104,20 @@ export const ApplicationCardsView: React.FC<ApplicationCardsViewProps> = ({
                 </div>
               </div>
             ) : (
-              <div className="mb-4 p-3 rounded-xl border border-dashed border-slate-200 dark:border-slate-800 text-center text-xs text-slate-400">
+              <div className="mb-4 p-3 rounded-xl border border-dashed border-cv-border text-center text-xs text-cv-text-muted">
                 אין פעולה מתוזמנת כעת
               </div>
             )}
           </div>
 
           {/* Footer Row */}
-          <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+          <div className="pt-3 border-t border-cv-border flex items-center justify-between text-xs text-cv-text-muted">
             <div className="flex items-center gap-2">
               <span className="tabular-nums">{formatHebrewDate(app.updatedAt)}</span>
               {app.matchScore && (
                 <>
                   <span aria-hidden="true">·</span>
-                  <span className="font-semibold text-slate-700 dark:text-slate-300 tabular-nums">
+                  <span className="font-semibold text-cv-text tabular-nums">
                     {app.matchScore}% התאמה
                   </span>
                 </>
@@ -128,7 +128,7 @@ export const ApplicationCardsView: React.FC<ApplicationCardsViewProps> = ({
               <button
                 type="button"
                 onClick={() => onUpdateRecruitment(app)}
-                className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 font-medium text-xs transition-colors"
+                className="text-cv-accent hover:text-cv-accent-hover font-medium text-xs transition-colors"
               >
                 ניהול גיוס
               </button>

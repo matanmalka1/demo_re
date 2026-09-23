@@ -30,15 +30,15 @@ export const ApplicationListPagination: React.FC<ApplicationListPaginationProps>
   }
 
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 text-xs text-slate-500 dark:text-slate-400 select-none">
+    <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 text-xs text-cv-text-muted select-none">
       {/* Item count text */}
       <div className="flex items-center gap-1.5 tabular-nums">
         <span>מציג</span>
-        <strong className="font-semibold text-slate-700 dark:text-slate-200">
+        <strong className="font-semibold text-cv-text">
           {startItem}-{endItem}
         </strong>
         <span>מתוך</span>
-        <strong className="font-semibold text-slate-700 dark:text-slate-200">{totalItems}</strong>
+        <strong className="font-semibold text-cv-text">{totalItems}</strong>
         <span>משרות</span>
       </div>
 
@@ -49,7 +49,7 @@ export const ApplicationListPagination: React.FC<ApplicationListPaginationProps>
           type="button"
           disabled={currentPage <= 1}
           onClick={() => onPageChange(currentPage - 1)}
-          className="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50 disabled:opacity-40 disabled:pointer-events-none transition-colors"
+          className="p-1.5 rounded-lg border border-cv-border bg-cv-surface text-cv-text hover:bg-cv-surface-muted disabled:opacity-40 disabled:pointer-events-none transition-colors"
           aria-label="עמוד קודם"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,8 +67,8 @@ export const ApplicationListPagination: React.FC<ApplicationListPaginationProps>
               className={cx(
                 'w-8 h-8 rounded-lg font-medium text-xs flex items-center justify-center transition-colors tabular-nums',
                 isCurrent
-                  ? 'bg-indigo-600 text-white font-bold'
-                  : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50'
+                  ? 'bg-cv-accent text-cv-on-accent font-bold'
+                  : 'bg-cv-surface  border border-cv-border  text-cv-text  hover:bg-cv-surface-muted'
               )}
               aria-current={isCurrent ? 'page' : undefined}
             >
@@ -81,7 +81,7 @@ export const ApplicationListPagination: React.FC<ApplicationListPaginationProps>
           type="button"
           disabled={currentPage >= totalPages}
           onClick={() => onPageChange(currentPage + 1)}
-          className="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50 disabled:opacity-40 disabled:pointer-events-none transition-colors"
+          className="p-1.5 rounded-lg border border-cv-border bg-cv-surface text-cv-text hover:bg-cv-surface-muted disabled:opacity-40 disabled:pointer-events-none transition-colors"
           aria-label="עמוד הבא"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -91,11 +91,11 @@ export const ApplicationListPagination: React.FC<ApplicationListPaginationProps>
 
         {onPageSizeChange && (
           <div className="mr-3 flex items-center gap-1">
-            <span className="text-slate-400 text-[11px]">לדף:</span>
+            <span className="text-cv-text-muted text-[11px]">לדף:</span>
             <select
               value={pageSize}
               onChange={(e) => onPageSizeChange(Number(e.target.value))}
-              className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-md py-1 px-1.5 text-xs text-slate-700 dark:text-slate-300"
+              className="bg-cv-surface border border-cv-border rounded-md py-1 px-1.5 text-xs text-cv-text"
             >
               <option value={10}>10</option>
               <option value={20}>20</option>

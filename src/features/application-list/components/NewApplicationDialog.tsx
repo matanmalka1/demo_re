@@ -69,15 +69,15 @@ export const NewApplicationDialog: React.FC<NewApplicationDialogProps> = ({
     >
       <form onSubmit={handleSubmit} className="space-y-4 text-right">
         {error && (
-          <div className="bg-rose-50 text-rose-700 text-xs p-2.5 rounded-lg border border-rose-200">
+          <div className="bg-cv-blocker-soft text-cv-blocker text-xs p-2.5 rounded-lg border border-cv-blocker">
             {error}
           </div>
         )}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
-              שם החברה <span className="text-rose-500">*</span>
+            <label className="block text-xs font-semibold text-cv-text mb-1.5">
+              שם החברה <span className="text-cv-blocker">*</span>
             </label>
             <Input
               value={companyName}
@@ -88,8 +88,8 @@ export const NewApplicationDialog: React.FC<NewApplicationDialogProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
-              שם התפקיד / משרה <span className="text-rose-500">*</span>
+            <label className="block text-xs font-semibold text-cv-text mb-1.5">
+              שם התפקיד / משרה <span className="text-cv-blocker">*</span>
             </label>
             <Input
               value={roleTitle}
@@ -102,7 +102,7 @@ export const NewApplicationDialog: React.FC<NewApplicationDialogProps> = ({
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+            <label className="block text-xs font-semibold text-cv-text mb-1.5">
               מיקום ומודל עבודה
             </label>
             <Input
@@ -113,7 +113,7 @@ export const NewApplicationDialog: React.FC<NewApplicationDialogProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+            <label className="block text-xs font-semibold text-cv-text mb-1.5">
               קישור למודעת המשרה (URL)
             </label>
             <Input
@@ -126,7 +126,7 @@ export const NewApplicationDialog: React.FC<NewApplicationDialogProps> = ({
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+          <label className="block text-xs font-semibold text-cv-text mb-1.5">
             הערות או דגשים מיוחדים
           </label>
           <textarea
@@ -134,7 +134,7 @@ export const NewApplicationDialog: React.FC<NewApplicationDialogProps> = ({
             onChange={(e) => setNotes(e.target.value)}
             rows={2}
             placeholder="איש קשר, המלצה מחבר, שכר מבוקש..."
-            className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg p-2.5 text-xs text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full bg-cv-surface border border-cv-border rounded-lg p-2.5 text-xs text-cv-text placeholder:text-cv-text-muted focus:outline-none focus:ring-2 focus:ring-cv-focus"
           />
         </div>
       </form>

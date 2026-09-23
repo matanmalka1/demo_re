@@ -35,13 +35,13 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
 
     const variantClasses = {
       ghost:
-        'text-slate-500 hover:text-slate-800 hover:bg-slate-100 focus-visible:ring-slate-400 dark:text-slate-400 dark:hover:text-slate-100 dark:hover:bg-slate-800',
+        'text-cv-text-muted hover:text-cv-text hover:bg-cv-surface-muted focus-visible:ring-cv-focus   ',
       outline:
-        'border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 focus-visible:ring-slate-400 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800',
+        'border border-cv-border text-cv-text-muted hover:bg-cv-surface-muted hover:text-cv-text focus-visible:ring-cv-focus   ',
       secondary:
-        'bg-slate-100 text-slate-700 hover:bg-slate-200 focus-visible:ring-slate-400 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700',
+        'bg-cv-surface-muted text-cv-text hover:bg-cv-surface-muted focus-visible:ring-cv-focus   ',
       danger:
-        'text-rose-600 hover:bg-rose-50 focus-visible:ring-rose-400 dark:text-rose-400 dark:hover:bg-rose-950/40',
+        'text-cv-blocker hover:bg-cv-blocker-soft focus-visible:ring-cv-focus  ',
     }[variant];
 
     return (

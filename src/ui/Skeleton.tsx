@@ -23,7 +23,7 @@ export const Skeleton: React.FC<SkeletonProps> = ({
 
   return (
     <div
-      className={cx('animate-pulse bg-slate-200 dark:bg-slate-800', variantClasses, className)}
+      className={cx('animate-pulse bg-cv-surface-muted ', variantClasses, className)}
       style={{ width, height, ...style }}
       aria-hidden="true"
       {...props}

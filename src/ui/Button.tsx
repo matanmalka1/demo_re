@@ -38,15 +38,15 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variantClasses = {
       primary:
-        'bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm focus-visible:ring-indigo-500 border border-indigo-600',
+        'bg-cv-accent hover:bg-cv-accent-hover text-cv-on-accent shadow-sm focus-visible:ring-cv-focus border border-cv-accent',
       secondary:
-        'bg-white hover:bg-slate-100 text-slate-700 shadow-sm border border-slate-200 focus-visible:ring-slate-400 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 dark:border-slate-700',
+        'bg-cv-surface hover:bg-cv-surface-muted text-cv-text shadow-sm border border-cv-border focus-visible:ring-cv-focus    ',
       outline:
-        'bg-transparent hover:bg-slate-50 text-slate-700 border border-slate-300 focus-visible:ring-slate-400 dark:text-slate-200 dark:border-slate-600 dark:hover:bg-slate-800',
+        'bg-transparent hover:bg-cv-surface-muted text-cv-text border border-cv-border focus-visible:ring-cv-focus   ',
       ghost:
-        'bg-transparent hover:bg-slate-100 text-slate-600 hover:text-slate-900 focus-visible:ring-slate-400 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200',
+        'bg-transparent hover:bg-cv-surface-muted text-cv-text-muted hover:text-cv-text focus-visible:ring-cv-focus   ',
       danger:
-        'bg-rose-600 hover:bg-rose-700 text-white shadow-sm focus-visible:ring-rose-500 border border-rose-600',
+        'bg-cv-blocker hover:bg-cv-blocker-hover text-cv-on-accent shadow-sm focus-visible:ring-cv-focus border border-cv-blocker',
     }[variant];
 
     return (

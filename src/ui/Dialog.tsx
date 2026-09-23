@@ -61,7 +61,7 @@ export const Dialog: React.FC<DialogProps> = ({
     >
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-slate-900/50 backdrop-blur-xs transition-opacity"
+        className="fixed inset-0 bg-cv-brand-deep/50 backdrop-blur-xs transition-opacity"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -70,18 +70,18 @@ export const Dialog: React.FC<DialogProps> = ({
       <div
         ref={dialogRef}
         className={cx(
-          'relative w-full bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 text-right z-10 overflow-hidden flex flex-col my-8 max-h-[90vh]',
+          'relative w-full bg-cv-surface  rounded-2xl shadow-xl border border-cv-border  text-right z-10 overflow-hidden flex flex-col my-8 max-h-[90vh]',
           maxWidthClass
         )}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-800">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-cv-border">
           <div>
-            <h2 id="dialog-title" className="text-lg font-semibold text-slate-900 dark:text-slate-100">
+            <h2 id="dialog-title" className="text-lg font-semibold text-cv-text">
               {title}
             </h2>
             {description && (
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{description}</p>
+              <p className="text-xs text-cv-text-muted mt-0.5">{description}</p>
             )}
           </div>
           <IconButton
@@ -101,7 +101,7 @@ export const Dialog: React.FC<DialogProps> = ({
 
         {/* Footer */}
         {footer && (
-          <div className="flex items-center justify-end gap-3 px-6 py-4 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800">
+          <div className="flex items-center justify-end gap-3 px-6 py-4 bg-cv-surface-muted border-t border-cv-border">
             {footer}
           </div>
         )}

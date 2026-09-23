@@ -26,10 +26,10 @@ export const ApplicationListTable: React.FC<ApplicationListTableProps> = ({
   onDeleteApplication,
 }) => {
   return (
-    <div className="w-full overflow-x-auto rounded-xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xs">
+    <div className="w-full overflow-x-auto rounded-xl border border-cv-border/80 bg-cv-surface shadow-2xs">
       <table className="w-full text-right border-collapse text-xs sm:text-sm">
         <thead>
-          <tr className="bg-slate-50/80 dark:bg-slate-800/60 border-b border-slate-200/80 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-semibold text-xs select-none">
+          <tr className="bg-cv-surface-muted/80 border-b border-cv-border/80 text-cv-text-muted font-semibold text-xs select-none">
             <th scope="col" className="py-3 px-4 font-semibold">
               חברה ותפקיד
             </th>
@@ -50,12 +50,12 @@ export const ApplicationListTable: React.FC<ApplicationListTableProps> = ({
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+        <tbody className="divide-y divide-cv-hairline">
           {applications.map((app) => (
             <tr
               key={app.id}
               onClick={() => onOpenApplication(app)}
-              className="hover:bg-slate-50/75 dark:hover:bg-slate-800/40 transition-colors cursor-pointer group"
+              className="hover:bg-cv-surface-muted/75 transition-colors cursor-pointer group"
             >
               {/* Company & Role */}
               <td className="py-3.5 px-4 align-middle">
@@ -90,16 +90,16 @@ export const ApplicationListTable: React.FC<ApplicationListTableProps> = ({
               {/* Match Score */}
               <td className="py-3.5 px-4 align-middle text-center">
                 {app.matchScore ? (
-                  <span className="inline-flex items-center justify-center font-mono font-bold text-xs px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 tabular-nums">
+                  <span className="inline-flex items-center justify-center font-mono font-bold text-xs px-2.5 py-1 rounded-md bg-cv-surface-muted text-cv-text tabular-nums">
                     {app.matchScore}%
                   </span>
                 ) : (
-                  <span className="text-slate-300 dark:text-slate-600">—</span>
+                  <span className="text-cv-border-strong">—</span>
                 )}
               </td>
 
               {/* Last Updated */}
-              <td className="py-3.5 px-4 align-middle whitespace-nowrap text-xs text-slate-500 dark:text-slate-400 tabular-nums">
+              <td className="py-3.5 px-4 align-middle whitespace-nowrap text-xs text-cv-text-muted tabular-nums">
                 {formatHebrewDate(app.updatedAt)}
               </td>
 

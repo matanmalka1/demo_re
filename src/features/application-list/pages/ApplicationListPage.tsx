@@ -254,17 +254,17 @@ export const ApplicationListPage: React.FC = () => {
   const attentionItems = applications.filter((a) => a.needsAttention && a.status === 'open');
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+    <div className="page-gutter page-frame py-section-gap space-y-section-gap">
       <LiveRegion message={liveAnnouncement} />
 
       {/* Action Notification Banner */}
       {actionNotice && (
-        <div className="bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-indigo-900 dark:text-indigo-200 text-xs px-4 py-2.5 rounded-xl flex items-center justify-between shadow-2xs">
+        <div className="bg-cv-accent-soft border border-cv-accent text-cv-accent text-xs px-4 py-2.5 rounded-xl flex items-center justify-between shadow-2xs">
           <span>{actionNotice}</span>
           <button
             type="button"
             onClick={() => setActionNotice(null)}
-            className="text-indigo-500 hover:text-indigo-800 text-sm font-bold"
+            className="text-cv-accent hover:text-cv-accent-hover text-sm font-bold"
           >
             ✕
           </button>
@@ -275,24 +275,24 @@ export const ApplicationListPage: React.FC = () => {
       {undoToast && (
         <div
           role="status"
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-xl border border-slate-700 flex items-center gap-4 text-xs sm:text-sm animate-bounce-subtle"
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-cv-brand-deep text-cv-on-accent px-5 py-3 rounded-2xl shadow-xl border border-cv-border flex items-center gap-4 text-xs sm:text-sm animate-bounce-subtle"
         >
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400" />
+            <span className="w-2 h-2 rounded-full bg-cv-success" />
             <span>המועמדות עבור {undoToast.appName} נסגרה.</span>
           </div>
           <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={handleUndoClose}
-              className="px-3 py-1 bg-indigo-600 hover:bg-indigo-500 font-bold rounded-lg text-white transition-colors"
+              className="px-3 py-1 bg-cv-accent hover:bg-cv-accent-hover font-bold rounded-lg text-cv-on-accent transition-colors"
             >
               בטל סגירה ({undoToast.timer} ש')
             </button>
             <button
               type="button"
               onClick={() => setUndoToast(null)}
-              className="text-slate-400 hover:text-white"
+              className="text-cv-text-muted hover:text-cv-on-accent"
               aria-label="סגור הודעה"
             >
               ✕
@@ -302,12 +302,12 @@ export const ApplicationListPage: React.FC = () => {
       )}
 
       {/* Header & Overview */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2 border-b border-slate-200/80 dark:border-slate-800">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2 border-b border-cv-border/80">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 font-display">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-cv-text font-display">
             לוח משרות והתאמת קורות חיים
           </h1>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+          <p className="text-xs sm:text-sm text-cv-text-muted mt-1">
             מעקב תהליכי גיוס, שלבי הכנת קורות חיים ופעולות מומלצות לקידום מועמדות
           </p>
         </div>
@@ -336,7 +336,7 @@ export const ApplicationListPage: React.FC = () => {
               }
             }}
             title="איפוס נתוני הדגמה"
-            className="p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors text-xs"
+            className="p-2 rounded-lg border border-cv-border text-cv-text-muted hover:text-cv-text transition-colors text-xs"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -539,35 +539,35 @@ export const ApplicationListPage: React.FC = () => {
           }
         >
           <div className="space-y-4 text-xs sm:text-sm">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-50 dark:bg-slate-800/40 p-3.5 rounded-xl border border-slate-100 dark:border-slate-800">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-cv-surface-muted p-3.5 rounded-xl border border-cv-border">
               <div>
-                <span className="text-slate-400 block text-[11px]">סטטוס משרה:</span>
+                <span className="text-cv-text-muted block text-[11px]">סטטוס משרה:</span>
                 <span className="font-semibold">{viewDetailsApp.status === 'open' ? 'פתוחה' : 'סגורה'}</span>
               </div>
               <div>
-                <span className="text-slate-400 block text-[11px]">שלב הכנת קו״ח:</span>
+                <span className="text-cv-text-muted block text-[11px]">שלב הכנת קו״ח:</span>
                 <span className="font-semibold">{viewDetailsApp.preparationStage}</span>
               </div>
               <div>
-                <span className="text-slate-400 block text-[11px]">שלב גיוס:</span>
+                <span className="text-cv-text-muted block text-[11px]">שלב גיוס:</span>
                 <span className="font-semibold">{viewDetailsApp.recruitmentStage}</span>
               </div>
               <div>
-                <span className="text-slate-400 block text-[11px]">ציון התאמה:</span>
-                <span className="font-bold text-indigo-600">{viewDetailsApp.matchScore || '—'}%</span>
+                <span className="text-cv-text-muted block text-[11px]">ציון התאמה:</span>
+                <span className="font-bold text-cv-accent">{viewDetailsApp.matchScore || '—'}%</span>
               </div>
             </div>
 
             {viewDetailsApp.nextAction && (
-              <div className="bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200/80 rounded-xl p-4">
-                <span className="text-[11px] font-bold text-indigo-700 dark:text-indigo-300 block mb-1">
+              <div className="bg-cv-accent-soft border border-cv-accent/80 rounded-xl p-4">
+                <span className="text-[11px] font-bold text-cv-accent block mb-1">
                   פעולה מומלצת הבאה
                 </span>
-                <h4 className="font-bold text-slate-900 dark:text-slate-100 text-sm">
+                <h4 className="font-bold text-cv-text text-sm">
                   {viewDetailsApp.nextAction.title}
                 </h4>
                 {viewDetailsApp.nextAction.description && (
-                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">
+                  <p className="text-xs text-cv-text-muted mt-1">
                     {viewDetailsApp.nextAction.description}
                   </p>
                 )}
@@ -575,9 +575,9 @@ export const ApplicationListPage: React.FC = () => {
             )}
 
             {viewDetailsApp.tailoredCvVersion && (
-              <div className="border border-slate-200 dark:border-slate-700 rounded-xl p-3.5 flex items-center justify-between">
+              <div className="border border-cv-border rounded-xl p-3.5 flex items-center justify-between">
                 <div>
-                  <span className="text-slate-400 text-xs block">גרסת קורות חיים מקושרת:</span>
+                  <span className="text-cv-text-muted text-xs block">גרסת קורות חיים מקושרת:</span>
                   <span className="font-semibold">{viewDetailsApp.tailoredCvVersion}</span>
                 </div>
                 <Button size="sm" variant="secondary">
@@ -587,15 +587,15 @@ export const ApplicationListPage: React.FC = () => {
             )}
 
             {viewDetailsApp.notes && (
-              <div className="border border-slate-200 dark:border-slate-700 rounded-xl p-3.5">
-                <span className="text-slate-400 text-xs block mb-1">הערות:</span>
-                <p className="text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-wrap">
+              <div className="border border-cv-border rounded-xl p-3.5">
+                <span className="text-cv-text-muted text-xs block mb-1">הערות:</span>
+                <p className="text-cv-text leading-relaxed whitespace-pre-wrap">
                   {viewDetailsApp.notes}
                 </p>
               </div>
             )}
 
-            <div className="text-[11px] text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800">
+            <div className="text-[11px] text-cv-text-muted pt-2 border-t border-cv-border">
               נוצר: {formatDateTimeHebrew(viewDetailsApp.createdAt)} · עודכן: {formatDateTimeHebrew(viewDetailsApp.updatedAt)}
             </div>
           </div>

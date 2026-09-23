@@ -73,7 +73,7 @@ export const RecruitmentUpdateDialog: React.FC<RecruitmentUpdateDialogProps> = (
       <form onSubmit={handleSubmit} className="space-y-4 text-right">
         {/* Recruitment Stage */}
         <div>
-          <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+          <label className="block text-xs font-semibold text-cv-text mb-1.5">
             שלב גיוס נוכחי
           </label>
           <Select
@@ -93,7 +93,7 @@ export const RecruitmentUpdateDialog: React.FC<RecruitmentUpdateDialogProps> = (
 
         {/* Next Interview Date */}
         <div>
-          <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+          <label className="block text-xs font-semibold text-cv-text mb-1.5">
             מועד ראיון הבא (אם יש)
           </label>
           <Input
@@ -106,7 +106,7 @@ export const RecruitmentUpdateDialog: React.FC<RecruitmentUpdateDialogProps> = (
         {/* Contact Info */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+            <label className="block text-xs font-semibold text-cv-text mb-1.5">
               איש קשר / מגייס/ת
             </label>
             <Input
@@ -117,7 +117,7 @@ export const RecruitmentUpdateDialog: React.FC<RecruitmentUpdateDialogProps> = (
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+            <label className="block text-xs font-semibold text-cv-text mb-1.5">
               פרטי קשר (טלפון / אימייל)
             </label>
             <Input
@@ -130,7 +130,7 @@ export const RecruitmentUpdateDialog: React.FC<RecruitmentUpdateDialogProps> = (
 
         {/* Expected Salary */}
         <div>
-          <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+          <label className="block text-xs font-semibold text-cv-text mb-1.5">
             ציפיית שכר / שכר שהוצע
           </label>
           <Input
@@ -142,7 +142,7 @@ export const RecruitmentUpdateDialog: React.FC<RecruitmentUpdateDialogProps> = (
 
         {/* Notes & Feedback */}
         <div>
-          <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+          <label className="block text-xs font-semibold text-cv-text mb-1.5">
             הערות וסיכומי שיחות
           </label>
           <textarea
@@ -150,7 +150,7 @@ export const RecruitmentUpdateDialog: React.FC<RecruitmentUpdateDialogProps> = (
             onChange={(e) => setNotes(e.target.value)}
             rows={3}
             placeholder="רשמים מהראיון, שאלות טכניות שנשאלו, משימות בית..."
-            className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg p-2.5 text-xs text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full bg-cv-surface border border-cv-border rounded-lg p-2.5 text-xs text-cv-text placeholder:text-cv-text-muted focus:outline-none focus:ring-2 focus:ring-cv-focus"
           />
         </div>
       </form>

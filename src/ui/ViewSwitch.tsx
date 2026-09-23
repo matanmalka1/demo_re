@@ -60,7 +60,7 @@ export const ViewSwitch: React.FC<ViewSwitchProps> = ({ value, onChange, classNa
       role="group"
       aria-label="תצוגת לוח משרות"
       className={cx(
-        'inline-flex items-center p-1 bg-slate-100 dark:bg-slate-800/80 rounded-xl border border-slate-200/60 dark:border-slate-700/60 shrink-0',
+        'inline-flex items-center p-1 bg-cv-surface-muted rounded-xl border border-cv-border/60 shrink-0',
         className
       )}
     >
@@ -75,8 +75,8 @@ export const ViewSwitch: React.FC<ViewSwitchProps> = ({ value, onChange, classNa
             className={cx(
               'flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-all cursor-pointer whitespace-nowrap',
               isActive
-                ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-xs'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+                ? 'bg-cv-surface  text-cv-text  shadow-xs'
+                : 'text-cv-text-muted  hover:text-cv-text '
             )}
           >
             {opt.icon}

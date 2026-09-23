@@ -53,7 +53,7 @@ export const CloseApplicationDialog: React.FC<CloseApplicationDialogProps> = ({
     >
       <form onSubmit={handleSubmit} className="space-y-4 text-right">
         <div>
-          <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+          <label className="block text-xs font-semibold text-cv-text mb-1.5">
             סיבת סגירת המועמדות
           </label>
           <Select
@@ -71,7 +71,7 @@ export const CloseApplicationDialog: React.FC<CloseApplicationDialogProps> = ({
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+          <label className="block text-xs font-semibold text-cv-text mb-1.5">
             הערות או לקחים מהתהליך (אופציונלי)
           </label>
           <textarea
@@ -79,11 +79,11 @@ export const CloseApplicationDialog: React.FC<CloseApplicationDialogProps> = ({
             onChange={(e) => setNotes(e.target.value)}
             rows={3}
             placeholder="למשל: ביקשו יותר ניסיון בארכיטקטורת ענן, לחזור עליהם בעוד שנה..."
-            className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg p-2.5 text-xs text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full bg-cv-surface border border-cv-border rounded-lg p-2.5 text-xs text-cv-text placeholder:text-cv-text-muted focus:outline-none focus:ring-2 focus:ring-cv-focus"
           />
         </div>
 
-        <div className="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-100 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
+        <div className="bg-cv-surface-muted p-3 rounded-xl border border-cv-border text-xs text-cv-text-muted">
           <p>
             לאחר הסגירה, המשרה תועבר ללשונית "סגורות וארכיון". תוכל לבטל את הפעולה מיד באמצעות כפתור
             ביטול שיופיע במסך.

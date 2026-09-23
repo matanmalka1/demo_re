@@ -28,7 +28,7 @@ export const ApplicationIdentity: React.FC<ApplicationIdentityProps> = ({
     <div className="flex items-center gap-3 min-w-0">
       {showMonogram && (
         <div
-          className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/60 text-slate-700 dark:text-slate-300 font-bold text-xs flex items-center justify-center shrink-0 select-none"
+          className="w-9 h-9 rounded-xl bg-cv-surface-muted border border-cv-border/60 text-cv-text font-bold text-xs flex items-center justify-center shrink-0 select-none"
           aria-hidden="true"
         >
           <LtrText>{initials || 'CV'}</LtrText>
@@ -37,7 +37,7 @@ export const ApplicationIdentity: React.FC<ApplicationIdentityProps> = ({
 
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-1.5 flex-wrap">
-          <h3 className="font-bold text-sm text-slate-900 dark:text-slate-100 hover:text-indigo-600 transition-colors truncate">
+          <h3 className="font-bold text-sm text-cv-text hover:text-cv-accent transition-colors truncate">
             <LtrText>{companyName}</LtrText>
           </h3>
 
@@ -46,7 +46,7 @@ export const ApplicationIdentity: React.FC<ApplicationIdentityProps> = ({
               href={jobUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors p-0.5 inline-flex"
+              className="text-cv-text-muted hover:text-cv-text-muted transition-colors p-0.5 inline-flex"
               title="פתיחת מודעת המשרה המקורית"
               aria-label={`פתיחת מודעת המשרה של ${companyName}`}
               onClick={(e) => e.stopPropagation()}
@@ -63,13 +63,13 @@ export const ApplicationIdentity: React.FC<ApplicationIdentityProps> = ({
           )}
         </div>
 
-        <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 truncate">
-          <span className="font-medium text-slate-700 dark:text-slate-300 truncate">
+        <div className="flex items-center gap-2 text-xs text-cv-text-muted truncate">
+          <span className="font-medium text-cv-text truncate">
             <LtrText>{roleTitle}</LtrText>
           </span>
           {location && (
             <>
-              <span aria-hidden="true" className="text-slate-300 dark:text-slate-700">
+              <span aria-hidden="true" className="text-cv-border-strong">
                 ·
               </span>
               <span className="truncate">{location}</span>

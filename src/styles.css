@@ -1,41 +1,625 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --font-hebrew: 'Assistant', 'Rubik', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+/* Raw palette values are deliberately private: components consume only the
+   semantic --color-cv-* layer exposed through @theme. A theme can therefore
+   change meaning without changing a single component utility. */
+:root {
+  color-scheme: light;
+  --cv-bright-snow: light-dark(#f8f9fa, #29323a);
+  --cv-platinum: light-dark(#e9ecef, #343a40);
+  --cv-alabaster-grey: light-dark(#dee2e6, #495057);
+  --cv-pale-slate-light: light-dark(#ced4da, #6c757d);
+  --cv-pale-slate: light-dark(#adb5bd, #adb5bd);
+  --cv-slate-grey: light-dark(#6c757d, #ced4da);
+  --cv-iron-grey: light-dark(#495057, #dee2e6);
+  --cv-gunmetal: light-dark(#343a40, #e9ecef);
+  --cv-carbon-black: light-dark(#212529, #f8f9fa);
+  --cv-shadow-edge: light-dark(transparent, rgb(255 255 255 / 0.08));
+  --cv-shadow-medium: light-dark(rgb(33 37 41 / 0.4), rgb(0 0 0 / 0.9));
+  --cv-shadow-strong: light-dark(rgb(33 37 41 / 0.45), rgb(0 0 0 / 0.95));
+  --cv-spacing-unit: 0.25rem;
+  --cv-z-content-raised: 10;
+  --cv-z-sticky: 20;
+  --cv-z-navigation: 30;
+  --cv-z-overlay: 50;
+  --cv-z-toast: 60;
+  --stroke-icon: 2;
+  --stroke-icon-strong: 3;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* Hebrew-first typography. Heebo is a true Hebrew family with matching Latin
+   glyphs, so a mixed line does not switch face mid-sentence; index.html loads it.
+   The fallbacks below are real Hebrew faces rather than a generic sans, so an
+   offline DraftFlow still renders Hebrew in a face designed for it. */
+
+@theme {
+  /* Soft document white. The canvas is a light neutral the app sits on, surfaces
+     are bright snow above it, and the accent is gunmetal. Canvas and surface
+     are two clearly different values, so a card reads as a card without needing a
+     heavy border.
+
+     The light and dark pairings a component can produce were checked against WCAG
+     AA: body and muted text on all five surfaces, each status colour on its own
+     soft chip and on plain surfaces, on-accent text on every filled button, and
+     the focus ring against both canvas and surface. The status
+     colours are deliberately darker than their mid-palette equivalents - a
+     lighter status colour reads well as a fill but fails as 14px text on its own
+     soft chip, which is exactly how `StatusBadge` uses it. */
+  --color-cv-canvas: var(--cv-bright-snow);
+  --color-cv-canvas-strong: var(--cv-alabaster-grey);
+  --color-cv-surface: light-dark(#fefefe, #212529);
+  --color-cv-surface-muted: var(--cv-platinum);
+  --color-cv-surface-raised: light-dark(#fefefe, #212529);
+  --color-cv-surface-sunken: var(--cv-platinum);
+  --color-cv-border: var(--cv-alabaster-grey);
+  --color-cv-hairline: var(--cv-alabaster-grey);
+  --color-cv-nav-active-bg: var(--cv-platinum);
+  /* Deliberate semantic alias: navigation may diverge from the global accent later. */
+  --color-cv-nav-active-indicator: var(--color-cv-accent);
+  /* Strong edges remain available for checkboxes and multiline editors. */
+  --color-cv-border-strong: var(--cv-pale-slate);
+  /* Input/select reference: Main.dc.html. */
+  --color-cv-field-border: var(--cv-alabaster-grey);
+  --color-cv-field-background: var(--cv-bright-snow);
+  --color-cv-field-focus: var(--cv-iron-grey);
+
+  --text-field: 1rem;
+  --color-cv-text: var(--cv-carbon-black);
+  --color-cv-text-muted: var(--cv-iron-grey);
+  --color-cv-accent: var(--cv-gunmetal);
+  --color-cv-accent-hover: var(--cv-carbon-black);
+  --color-cv-accent-soft: var(--cv-platinum);
+  --color-cv-info: var(--cv-iron-grey);
+  --color-cv-info-soft: var(--cv-platinum);
+  --color-cv-brand-deep: var(--cv-carbon-black);
+  --color-cv-brass: var(--cv-slate-grey);
+  --color-cv-brass-soft: var(--cv-bright-snow);
+  --color-cv-success: var(--cv-gunmetal);
+  --color-cv-success-soft: var(--cv-platinum);
+  --color-cv-warning: var(--cv-iron-grey);
+  --color-cv-warning-soft: var(--cv-alabaster-grey);
+  --color-cv-blocker: var(--cv-carbon-black);
+  --color-cv-blocker-hover: var(--cv-gunmetal);
+  --color-cv-blocker-soft: var(--cv-alabaster-grey);
+  --color-cv-focus: var(--cv-carbon-black);
+  --color-cv-on-accent: var(--cv-bright-snow);
+  --font-sans:
+    "Heebo", "Assistant", "Rubik", "Arial Hebrew", "Noto Sans Hebrew", system-ui, -apple-system, "Segoe UI", Arial,
+    sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* A.2 typography scale: 15px body, 13px supporting text, 16/22/36px headings.
+     Line heights run slightly taller than the Latin defaults: Hebrew has no
+     ascender/descender rhythm to lean on, so the extra leading is what keeps a
+     paragraph legible rather than dense. */
+  /* One step below supporting text, for a label that names the control beside it
+     rather than being read as prose - a field's optional marker, the wizard's step
+     count, the commit bar's own name. It was three separate `text-[0.75rem]`
+     literals, which held their 12px while `[data-text-size="large"]` grew every
+     labelled thing around them. */
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.5;
+  --text-support: 0.8125rem;
+  --text-support--line-height: 1.6;
+  --text-body: 0.9375rem;
+  --text-body--line-height: 1.7;
+  --text-heading-sm: 1rem;
+  --text-heading-sm--line-height: 1.4;
+  --text-heading-md: 1.375rem;
+  --text-heading-md--line-height: 1.35;
+  --text-heading-lg: 2.25rem;
+  --text-heading-lg--line-height: 1.15;
+
+  /* A.2 spacing: 4px base, so the 8/12/16/24/32px gaps are 2/3/4/6/8. */
+  --spacing: 0.25rem;
+  --spacing-control-gap: calc(var(--cv-spacing-unit) * 2);
+  --spacing-field-gap: calc(var(--cv-spacing-unit) * 3);
+  --spacing-card-padding: calc(var(--cv-spacing-unit) * 4);
+  --spacing-section-gap: calc(var(--cv-spacing-unit) * 6);
+  --spacing-page-gap: calc(var(--cv-spacing-unit) * 8);
+  --spacing-icon-sm: 0.875rem;
+  --spacing-icon-md: 1rem;
+  --spacing-icon-lg: 1.25rem;
+
+  /* Dark elevation adds a faint light edge as well as a restrained black drop;
+     a black shadow alone disappears between two near-black surfaces. */
+  --radius-control: 0.5rem;
+  --radius-surface: 0.875rem;
+  --radius-pill: 9999px;
+  --shadow-surface: none;
+  --shadow-floating: 0 0 0 1px var(--cv-shadow-edge), 0 18px 40px -24px var(--cv-shadow-medium);
+  --shadow-overlay: 0 0 0 1px var(--cv-shadow-edge), 0 28px 70px -24px var(--cv-shadow-strong);
+  --shadow-document: 0 0 0 1px var(--cv-shadow-edge), 0 24px 56px -32px var(--cv-shadow-strong);
+}
+:root {
+  color: var(--color-cv-text);
+  background: var(--color-cv-canvas);
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  font-feature-settings:
+    "kern" 1,
+    "liga" 1;
+  /* Hebrew letterforms are uniform-height and lose their word shape when tracked
+     out, so the shell tracks slightly tight and the LTR islands below opt back
+     out of it. */
+  letter-spacing: -0.006em;
+}
+
+html {
+  direction: rtl;
+}
+
+/* One scrollbar for the whole product. Every scroll area - the page, a dialog body, the
+   fact pool, a rail - draws the same thin bar over a transparent track, so a scroll area
+   is told apart by its content and not by a strip of chrome that changes weight from one
+   page to the next. It used to be a 10px bar over a filled `surface-sunken` track, which
+   on a one-line rail read as a page element rather than as a control. Firefox takes the
+   standard properties; browsers with the WebKit selectors take the more expressive rules
+   below, where a transparent border plus `background-clip` insets the thumb instead of
+   painting a track behind it. */
+* {
+  scrollbar-color: var(--color-cv-border-strong) transparent;
+  scrollbar-width: thin;
+}
+
+@supports selector(::-webkit-scrollbar) {
+  *::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
   }
 
-  html {
-    font-family: var(--font-hebrew);
-    direction: rtl;
-    text-align: right;
-  }
-
-  /* Custom scrollbar for modern subtle appearance */
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-  ::-webkit-scrollbar-track {
+  *::-webkit-scrollbar-track,
+  *::-webkit-scrollbar-corner {
     background: transparent;
   }
-  ::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 9999px;
+
+  *::-webkit-scrollbar-thumb {
+    min-width: 2rem;
+    min-height: 2rem;
+    border: 2px solid transparent;
+    border-radius: var(--radius-pill);
+    background: var(--color-cv-border-strong);
+    background-clip: content-box;
   }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--color-cv-accent);
+    background-clip: content-box;
+  }
+
+  *::-webkit-scrollbar-thumb:active {
+    background: var(--color-cv-accent-hover);
+    background-clip: content-box;
   }
 }
 
-/* Tabular numbers utility for metrics and dates */
-.tabular-nums {
-  font-variant-numeric: tabular-nums;
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  /* A flat canvas. The warm paper grain that used to sit here was drawn in brass
+     and read as a stain against the cool neutral, and a document-white app wants
+     an even ground rather than a textured one. */
+  background: var(--color-cv-canvas);
 }
 
-/* LTR text isolation helper */
-.ltr-text {
+/* One gutter outside every constrained application frame. Header and main content use
+   the same order - gutter, then frame - so their edges remain aligned above the maximum
+   measure as well as below it. */
+.page-gutter {
+  width: 100%;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 40rem) {
+  .page-gutter {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .page-gutter {
+    padding-inline: 2rem;
+  }
+}
+
+/* One outer measure for every route-level surface and shell landmark. A page whose body
+   is a single column of inputs shortens the line by setting --page-measure.
+
+   The frame starts at the navigation edge rather than centring. Centred, a shorter
+   measure moved the page heading sideways on every change of route - the board's title
+   against the sidebar, Settings' a third of the way across - so moving between areas
+   read as the layout shifting rather than as the content changing. */
+.page-frame {
+  max-width: var(--page-measure, 110rem);
+  margin-inline-end: auto;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+[data-text-size="large"] {
+  --text-field: 1.125rem;
+  --text-caption: 0.9375rem;
+  --text-support: 1rem;
+  --text-body: 1.125rem;
+  --text-heading-sm: 1.375rem;
+  --text-heading-md: 1.625rem;
+  --text-heading-lg: 2.5rem;
+  --spacing-icon-sm: 1rem;
+  --spacing-icon-md: 1.125rem;
+  --spacing-icon-lg: 1.375rem;
+}
+
+[data-density="compact"] {
+  --cv-spacing-unit: 0.2rem;
+}
+
+[data-route-density="work"] {
+  --spacing-control-gap: calc(var(--cv-spacing-unit) * 1.75);
+  --spacing-field-gap: calc(var(--cv-spacing-unit) * 2.625);
+  --spacing-card-padding: calc(var(--cv-spacing-unit) * 3.5);
+  --spacing-section-gap: calc(var(--cv-spacing-unit) * 5.25);
+  --spacing-page-gap: calc(var(--cv-spacing-unit) * 7);
+}
+
+[data-route-density="focus"] {
+  --spacing-control-gap: calc(var(--cv-spacing-unit) * 2.25);
+  --spacing-field-gap: calc(var(--cv-spacing-unit) * 3.375);
+  --spacing-card-padding: calc(var(--cv-spacing-unit) * 4.5);
+  --spacing-section-gap: calc(var(--cv-spacing-unit) * 6.75);
+  --spacing-page-gap: calc(var(--cv-spacing-unit) * 9);
+}
+
+@media (forced-colors: active) {
+  .cv-skeleton {
+    border: 1px solid CanvasText;
+    background: Canvas;
+    animation: none;
+  }
+
+  .workflow-track-upcoming {
+    border-block-start: 1px dashed CanvasText;
+    background: none;
+  }
+
+  @media (min-width: 64rem) {
+    .workflow-track-upcoming {
+      border-block-start: 0;
+      border-inline-start: 1px dashed CanvasText;
+    }
+  }
+
+  [class*="bg-cv-success-soft"],
+  [class*="bg-cv-warning-soft"],
+  [class*="bg-cv-blocker-soft"],
+  [class*="bg-cv-info-soft"],
+  [class*="bg-cv-accent-soft"] {
+    border-color: CanvasText;
+  }
+}
+
+button,
+input,
+optgroup,
+textarea,
+select {
+  font: inherit;
+}
+
+.cv-field {
+  --cv-field-fill: var(--color-cv-surface);
+  border-color: var(--color-cv-field-border);
+  background-color: var(--cv-field-fill);
+  color: var(--color-cv-text);
+  line-height: normal;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background-color 0.2s;
+}
+
+.cv-field:hover:not(:disabled) {
+  border-color: var(--color-cv-border-strong);
+}
+
+.cv-field-input {
+  --cv-field-fill: var(--color-cv-field-background);
+  font-size: var(--text-field);
+}
+
+.cv-field-select {
+  /* Matches `.cv-field-input`'s tinted fill. Left unset, a select's background stayed
+     `--color-cv-surface` - the same white as the page and every card - so next to a
+     real field it read as a plain, unstyled native control rather than a sibling of
+     the same field family. */
+  --cv-field-fill: var(--color-cv-field-background);
+  font-size: var(--text-field);
+}
+
+.cv-field-textarea {
+  --cv-field-fill: var(--color-cv-field-background);
+  font-size: var(--text-field);
+  line-height: 1.75;
+}
+
+.cv-field-textarea:focus:not(:disabled) {
+  --cv-field-fill: var(--color-cv-surface);
+  border-color: var(--color-cv-field-focus);
+}
+
+/* Grow with the value instead of holding one fixed height: `min-h` keeps the empty
+   field a real target, and the max height hands scrolling back to the element once a
+   long job posting outgrows it, so a card never stretches past the viewport. Browsers
+   without `field-sizing` keep the fixed box and the resize handle, which is why the
+   handle stays enabled in both. */
+@supports (field-sizing: content) {
+  .cv-field-textarea {
+    field-sizing: content;
+    max-height: 30rem;
+  }
+}
+
+.cv-fields-compact .cv-field {
+  padding-block: 0.375rem;
+  padding-inline: 0.625rem;
+  font-size: var(--text-support);
+}
+
+.cv-fields-compact .cv-field-textarea {
+  min-height: 4.5rem;
+  line-height: 1.6;
+}
+
+/* Browsers paint autofilled values on their own internal layer. Repaint that layer with
+   the field's existing fill while retaining native autofill behavior and identification. */
+.cv-field:autofill {
+  background-color: var(--cv-field-fill);
+  color: var(--color-cv-text);
+  caret-color: var(--color-cv-text);
+}
+
+.cv-field:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--cv-field-fill) inset;
+  -webkit-text-fill-color: var(--color-cv-text);
+  caret-color: var(--color-cv-text);
+}
+
+.cv-field[aria-invalid="true"]:-webkit-autofill {
+  -webkit-box-shadow:
+    0 0 0 1000px var(--cv-field-fill) inset,
+    0 0 0 2px var(--color-cv-blocker-soft);
+}
+
+.cv-field::placeholder {
+  color: var(--color-cv-text-muted);
+}
+
+.cv-field:focus-visible {
+  outline: 2px solid var(--color-cv-field-focus);
+  outline-offset: 2px;
+}
+
+.cv-field[aria-invalid="true"] {
+  border-color: var(--color-cv-blocker);
+  box-shadow: 0 0 0 2px var(--color-cv-blocker-soft);
+}
+
+.cv-field:disabled {
+  cursor: not-allowed;
+  background: var(--color-cv-surface-muted);
+  color: var(--color-cv-text-muted);
+}
+
+/* A.2: 2px focus ring with 2px offset on every interactive element.
+   Derived from :focus-visible so no component has to opt in by hand. */
+:focus-visible {
+  outline: 2px solid var(--color-cv-focus);
+  outline-offset: 2px;
+}
+
+/* A.3: LTR islands inside the RTL shell — URLs, IDs, ETags, error codes,
+   filenames, English job/CV text. */
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-mono);
   direction: ltr;
-  unicode-bidi: isolate;
+  unicode-bidi: plaintext;
+}
+
+.ltr-island {
+  direction: ltr;
   text-align: left;
+  unicode-bidi: isolate;
+  /* The Hebrew tracking above is wrong for Latin IDs and codes. */
+  letter-spacing: normal;
+}
+
+/* `dir="auto"` follows the value once a user types, but an empty input does not
+   reliably use its mixed Hebrew/English placeholder to choose a direction. Keep the
+   empty state anchored to the RTL edge; the rule stops applying as soon as it has a
+   value, and `dir="auto"` takes over again. */
+.rtl-placeholder:placeholder-shown {
+  direction: rtl;
+  text-align: right;
+}
+
+.mono-code {
+  direction: ltr;
+  text-align: left;
+  font-family: var(--font-mono);
+  unicode-bidi: plaintext;
+  letter-spacing: normal;
+}
+
+/* A.5: the modal dialog is the only overlay surface. It settles in with a short
+   rise-and-fade rather than appearing instantly, so the interruption reads as
+   deliberate; prefers-reduced-motion collapses this to 0.01ms below. */
+dialog {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease,
+    overlay 0.18s ease allow-discrete,
+    display 0.18s ease allow-discrete;
+}
+@starting-style {
+  dialog[open] {
+    opacity: 0;
+    transform: translateY(6px) scale(0.97);
+  }
+}
+
+dialog::backdrop {
+  /* The same neutral charcoal the shadows are cast in, so the scrim dims the page
+     rather than tinting it. */
+  background: rgb(33 37 41 / 0.45);
+  backdrop-filter: blur(2px);
+  opacity: 1;
+  transition:
+    opacity 0.18s ease,
+    overlay 0.18s ease allow-discrete,
+    display 0.18s ease allow-discrete;
+}
+@starting-style {
+  dialog[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+::selection {
+  color: var(--color-cv-text);
+  background: var(--color-cv-accent-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* The unlaid part of the workflow rail. Dotted rather than a paler solid: "done" and
+   "not started yet" then differ in shape as well as colour, which is what the two
+   states need to survive greyscale (A.2, colour is never the only signal). */
+.workflow-track-upcoming {
+  background-image: radial-gradient(circle, var(--color-cv-border-strong) 1px, transparent 1px);
+  background-repeat: repeat-x;
+  background-position: center;
+  background-size: 6px 4px;
+}
+
+/* The spine runs across the top below the large breakpoint and down the side from it.
+   Dots repeated only along x drew a vertical 1px track as a single dot, so the upcoming
+   stages looked unconnected; the repeat follows the track's own axis. */
+@media (min-width: 64rem) {
+  .workflow-track-upcoming {
+    background-repeat: repeat-y;
+    background-size: 4px 6px;
+  }
+}
+
+/* Content on its way, drawn as the shape it is about to become.
+
+   The alternative was a line of muted text, which is honest but reads as a different
+   application: every other wait in this flow is a card with a tag and a live status, and
+   a bare sentence in the middle of that is a hole in the surface rather than a lighter
+   version of it. A skeleton keeps the page's own vocabulary without claiming what the
+   Operation card claims - it says "this region is coming", not "work is running".
+
+   The sweep travels from the end because the interface is RTL. `prefers-reduced-motion`
+   above sets `animation-iteration-count: 1`, so this settles on a plain muted block
+   rather than flickering. */
+@keyframes cv-skeleton-sweep {
+  from {
+    background-position: -150% 0;
+  }
+  to {
+    background-position: 150% 0;
+  }
+}
+
+.cv-skeleton {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-cv-surface) 45%,
+    var(--color-cv-surface) 55%,
+    transparent 100%
+  );
+  background-size: 250% 100%;
+  background-repeat: no-repeat;
+  animation: cv-skeleton-sweep 1.6s ease-in-out infinite;
+}
+
+/* The few moments where a region genuinely changes shape rather than merely changing
+   words: a run that finished collapsing to its one-line result, and the cancel control
+   arriving into the space held for it. Both are real news, so they are eased in over a
+   frame or two instead of cut in - the change reads as the state moving rather than as
+   the page glitching. Everything that is only a text or badge swap keeps its geometry and
+   needs nothing here. `prefers-reduced-motion` above collapses this like every other
+   animation on the page. */
+@keyframes cv-settle-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.cv-settle-in {
+  animation: cv-settle-in 180ms ease-out;
+}
+
+/* Operations do not expose a trustworthy percentage, so the bar communicates ongoing
+   activity rather than pretending to approach 100%. It crosses the track and starts
+   again; the global reduced-motion rule above lets it settle into a plain accent segment. */
+@keyframes cv-operation-progress {
+  from {
+    transform: translateX(-160%);
+  }
+  to {
+    transform: translateX(360%);
+  }
+}
+
+.cv-operation-progress {
+  animation: cv-operation-progress 1.4s ease-in-out infinite;
+}
+
+/* The workflow rail's one decorative beacon: a soft ring breathing behind the current
+   stage's mark. `prefers-reduced-motion` above already collapses every animation on the
+   page to a single, near-instant frame, so this needs no separate opt-out. */
+@keyframes cv-beacon {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(1.4);
+  }
 }

@@ -65,42 +65,42 @@ export const RECRUITMENT_STAGE_INFO: Record<RecruitmentStage, { label: string; t
   draft: {
     label: 'טיוטה טרם הגשה',
     tone: 'neutral',
-    badgeDotColor: 'bg-slate-400',
+    badgeDotColor: 'bg-cv-text-muted',
   },
   applied: {
     label: 'הוגשה מועמדות',
     tone: 'info',
-    badgeDotColor: 'bg-sky-500',
+    badgeDotColor: 'bg-cv-info',
   },
   screening: {
     label: 'סינון טלפוני / HR',
     tone: 'primary',
-    badgeDotColor: 'bg-indigo-500',
+    badgeDotColor: 'bg-cv-accent',
   },
   interviewing: {
     label: 'בתהליך ראיונות',
     tone: 'warning',
-    badgeDotColor: 'bg-amber-500',
+    badgeDotColor: 'bg-cv-warning',
   },
   offer: {
     label: 'התקבלה הצעת שכר',
     tone: 'success',
-    badgeDotColor: 'bg-emerald-500',
+    badgeDotColor: 'bg-cv-success',
   },
   rejected: {
     label: 'לא התקבל',
     tone: 'danger',
-    badgeDotColor: 'bg-rose-500',
+    badgeDotColor: 'bg-cv-blocker',
   },
   withdrawn: {
     label: 'הוסרה מועמדות',
     tone: 'neutral',
-    badgeDotColor: 'bg-slate-500',
+    badgeDotColor: 'bg-cv-text-muted',
   },
   archived: {
     label: 'בארכיון',
     tone: 'neutral',
-    badgeDotColor: 'bg-slate-400',
+    badgeDotColor: 'bg-cv-text-muted',
   },
 };
 

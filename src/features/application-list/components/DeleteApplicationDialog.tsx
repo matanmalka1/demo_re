@@ -43,18 +43,18 @@ export const DeleteApplicationDialog: React.FC<DeleteApplicationDialogProps> = (
       }
     >
       <div className="space-y-3 text-right text-xs sm:text-sm">
-        <p className="text-slate-700 dark:text-slate-300">
+        <p className="text-cv-text">
           האם אתה בטוח שברצונך למחוק את המועמדות עבור{' '}
-          <strong className="text-slate-900 dark:text-slate-100">
+          <strong className="text-cv-text">
             <LtrText>{application.companyName}</LtrText>
           </strong>{' '}
           בתפקיד{' '}
-          <strong className="text-slate-900 dark:text-slate-100">
+          <strong className="text-cv-text">
             <LtrText>{application.roleTitle}</LtrText>
           </strong>
           ?
         </p>
-        <div className="bg-rose-50 dark:bg-rose-950/40 border border-rose-200/80 dark:border-rose-900/40 rounded-xl p-3 text-rose-800 dark:text-rose-200 text-xs">
+        <div className="bg-cv-blocker-soft border border-cv-blocker/80 rounded-xl p-3 text-cv-blocker text-xs">
           מחיקת המשרה תסיר גם את כל היסטוריית הגרסאות, ניתוחי דרישות המשרה וטיוטות קורות החיים
           המותאמות שנבנו עבור משרה זו.
         </div>

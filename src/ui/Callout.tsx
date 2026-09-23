@@ -63,7 +63,7 @@ export const ErrorCallout: React.FC<ErrorCalloutProps> = ({
       tone="danger"
       title={title}
       icon={
-        <svg className="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-5 h-5 text-cv-blocker" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -77,7 +77,7 @@ export const ErrorCallout: React.FC<ErrorCalloutProps> = ({
           <button
             type="button"
             onClick={onRetry}
-            className="px-3 py-1.5 text-xs font-medium bg-rose-600 text-white rounded-lg hover:bg-rose-700 transition-colors"
+            className="px-3 py-1.5 text-xs font-medium bg-cv-blocker text-cv-on-accent rounded-lg hover:bg-cv-blocker transition-colors"
           >
             נסה שוב
           </button>

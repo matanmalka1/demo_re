@@ -27,7 +27,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="relative flex items-center w-full">
         {startAdornment && (
-          <div className="absolute right-3 flex items-center pointer-events-none text-slate-400">
+          <div className="absolute right-3 flex items-center pointer-events-none text-cv-text-muted">
             {startAdornment}
           </div>
         )}
@@ -36,10 +36,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           value={value}
           disabled={disabled}
           className={cx(
-            'w-full bg-white dark:bg-slate-900 border rounded-lg py-2 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors disabled:opacity-50 disabled:bg-slate-50 dark:disabled:bg-slate-800',
+            'w-full bg-cv-surface  border rounded-lg py-2 text-sm text-cv-text  placeholder:text-cv-text-muted focus:outline-none focus:ring-2 focus:ring-cv-focus focus:border-cv-field-focus transition-colors disabled:opacity-50 disabled:bg-cv-surface-muted ',
             isInvalid
-              ? 'border-rose-300 dark:border-rose-700 focus:ring-rose-500'
-              : 'border-slate-200 dark:border-slate-700',
+              ? 'border-cv-blocker  focus:ring-cv-focus'
+              : 'border-cv-border ',
             startAdornment ? 'pr-9' : 'pr-3',
             endAdornment || onClear ? 'pl-9' : 'pl-3',
             className
@@ -50,7 +50,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <button
             type="button"
             onClick={onClear}
-            className="absolute left-2.5 p-1 rounded-md text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="absolute left-2.5 p-1 rounded-md text-cv-text-muted hover:text-cv-text-muted hover:bg-cv-surface-muted transition-colors"
             aria-label="נקה חיפוש"
           >
             <svg
@@ -69,7 +69,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           </button>
         )}
         {!onClear && endAdornment && (
-          <div className="absolute left-3 flex items-center pointer-events-none text-slate-400">
+          <div className="absolute left-3 flex items-center pointer-events-none text-cv-text-muted">
             {endAdornment}
           </div>
         )}
