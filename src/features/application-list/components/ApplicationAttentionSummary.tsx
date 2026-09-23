@@ -1,7 +1,7 @@
 import React from 'react';
-import { ApplicationRecord } from '@/src/api/contracts';
-import { LtrText } from '@/src/ui/LtrText';
-import { cx } from '@/src/ui/cx';
+import { ApplicationRecord } from '@/api/contracts';
+import { LtrText } from '@/ui/LtrText';
+import { cx } from '@/ui/cx';
 
 export interface ApplicationAttentionSummaryProps {
   attentionItems: ApplicationRecord[];

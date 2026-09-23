@@ -3,17 +3,21 @@ import { cx } from './cx';
 import { IconButton } from './IconButton';
 
 export interface DialogProps {
-  isOpen: boolean;
+  isOpen?: boolean;
+  open?: boolean;
+  headingId?: string;
   onClose: () => void;
   title: string;
   description?: string;
   children: React.ReactNode;
   footer?: React.ReactNode;
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'wide';
 }
 
 export const Dialog: React.FC<DialogProps> = ({
   isOpen,
+  open,
+  headingId = 'dialog-title',
   onClose,
   title,
   description,
@@ -23,6 +27,8 @@ export const Dialog: React.FC<DialogProps> = ({
 }) => {
   const dialogRef = useRef<HTMLDivElement>(null);
 
+  const visible = open ?? isOpen ?? false;
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -30,7 +36,7 @@ export const Dialog: React.FC<DialogProps> = ({
       }
     };
 
-    if (isOpen) {
+    if (visible) {
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
     } else {
@@ -41,23 +47,24 @@ export const Dialog: React.FC<DialogProps> = ({
       document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen, onClose]);
+  }, [visible, onClose]);
 
-  if (!isOpen) return null;
+  if (!visible) return null;
 
+  const normalizedSize = size === 'wide' ? 'xl' : size;
   const maxWidthClass = {
     sm: 'max-w-md',
     md: 'max-w-lg',
     lg: 'max-w-2xl',
     xl: 'max-w-4xl',
-  }[size];
+  }[normalizedSize];
 
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
       role="dialog"
       aria-modal="true"
-      aria-labelledby="dialog-title"
+      aria-labelledby={headingId}
     >
       {/* Backdrop */}
       <div
@@ -77,7 +84,7 @@ export const Dialog: React.FC<DialogProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-cv-border">
           <div>
-            <h2 id="dialog-title" className="text-lg font-semibold text-cv-text">
+            <h2 id={headingId} className="text-lg font-semibold text-cv-text">
               {title}
             </h2>
             {description && (

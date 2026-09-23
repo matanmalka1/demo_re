@@ -1,8 +1,8 @@
 import React from 'react';
-import { ApplicationRecord } from '@/src/api/contracts';
-import { Dialog } from '@/src/ui/Dialog';
-import { Button } from '@/src/ui/Button';
-import { LtrText } from '@/src/ui/LtrText';
+import { ApplicationRecord } from '@/api/contracts';
+import { Dialog } from '@/ui/Dialog';
+import { Button } from '@/ui/Button';
+import { LtrText } from '@/ui/LtrText';
 
 export interface DeleteApplicationDialogProps {
   application: ApplicationRecord | null;

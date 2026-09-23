@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ApplicationRecord } from '@/src/api/contracts';
-import { IconButton } from '@/src/ui/IconButton';
+import { ApplicationRecord } from '@/api/contracts';
+import { IconButton } from '@/ui/IconButton';
 
 export interface ApplicationListItemActionsProps {
   application: ApplicationRecord;

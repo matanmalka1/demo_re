@@ -2,9 +2,9 @@ import React from 'react';
 import { cx } from './cx';
 import { Tone, toneStyles } from './tone';
 
-export interface CalloutProps {
+export interface CalloutProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   tone?: Tone;
   icon?: React.ReactNode;
   action?: React.ReactNode;
@@ -18,6 +18,7 @@ export const Callout: React.FC<CalloutProps> = ({
   icon,
   action,
   className,
+  ...props
 }) => {
   const styles = toneStyles[tone];
 
@@ -31,6 +32,7 @@ export const Callout: React.FC<CalloutProps> = ({
         className
       )}
       role="region"
+      {...props}
     >
       {icon && <div className="shrink-0 mt-0.5">{icon}</div>}
       <div className="flex-1 min-w-0">
@@ -43,10 +45,12 @@ export const Callout: React.FC<CalloutProps> = ({
 };
 
 export interface ErrorCalloutProps {
-  error: Error | string | null | undefined;
+  error: unknown;
   onRetry?: () => void;
   title?: string;
   className?: string;
+  fallbackDetail?: string;
+  fallbackTitle?: string;
 }
 
 export const ErrorCallout: React.FC<ErrorCalloutProps> = ({
@@ -54,14 +58,21 @@ export const ErrorCallout: React.FC<ErrorCalloutProps> = ({
   onRetry,
   title = 'אירעה שגיאה בטעינת הנתונים',
   className,
+  fallbackDetail,
+  fallbackTitle,
 }) => {
   if (!error) return null;
-  const message = typeof error === 'string' ? error : error.message;
+  const message =
+    typeof error === 'string'
+      ? error
+      : error instanceof Error
+        ? error.message
+        : fallbackDetail ?? 'אירעה שגיאה לא צפויה';
 
   return (
     <Callout
       tone="danger"
-      title={title}
+      title={fallbackTitle ?? title}
       icon={
         <svg className="w-5 h-5 text-cv-blocker" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path

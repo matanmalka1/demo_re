@@ -1,5 +1,5 @@
 import React from 'react';
-import { ApplicationRecord } from '@/src/api/contracts';
+import { ApplicationRecord } from '@/api/contracts';
 import { ApplicationIdentity } from './ApplicationIdentity';
 import { ApplicationListStatuses } from './ApplicationListStatuses';
 import { ApplicationNextAction } from './ApplicationNextAction';

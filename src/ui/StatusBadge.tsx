@@ -7,6 +7,7 @@ export interface StatusBadgeProps extends React.HTMLAttributes<HTMLSpanElement> 
   tone?: Tone;
   showDot?: boolean;
   size?: 'sm' | 'md';
+  icon?: React.ComponentType<{ className?: string; 'aria-hidden'?: boolean | 'true' | 'false' }>;
 }
 
 export const StatusBadge: React.FC<StatusBadgeProps> = ({
@@ -14,6 +15,7 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
   tone = 'neutral',
   showDot = true,
   size = 'md',
+  icon: Icon,
   className,
   ...props
 }) => {
@@ -32,7 +34,7 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
       )}
       {...props}
     >
-      {showDot && (
+      {Icon ? <Icon aria-hidden="true" className="h-3.5 w-3.5" /> : showDot && (
         <span
           className={cx('w-1.5 h-1.5 rounded-full shrink-0', styles.dot)}
           aria-hidden="true"

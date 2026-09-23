@@ -1,7 +1,7 @@
 import React from 'react';
-import { ApplicationRecord } from '@/src/api/contracts';
-import { LtrText } from '@/src/ui/LtrText';
-import { Button } from '@/src/ui/Button';
+import { ApplicationRecord } from '@/api/contracts';
+import { LtrText } from '@/ui/LtrText';
+import { Button } from '@/ui/Button';
 
 export interface ApplicationPipelineViewProps {
   applications: ApplicationRecord[];

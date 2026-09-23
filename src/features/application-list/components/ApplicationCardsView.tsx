@@ -1,10 +1,10 @@
 import React from 'react';
-import { ApplicationRecord } from '@/src/api/contracts';
+import { ApplicationRecord } from '@/api/contracts';
 import { ApplicationIdentity } from './ApplicationIdentity';
 import { ApplicationListStatuses } from './ApplicationListStatuses';
 import { ApplicationListItemActions } from './ApplicationListItemActions';
 import { formatHebrewDate } from '../model/applicationListPresentation';
-import { Button } from '@/src/ui/Button';
+import { Button } from '@/ui/Button';
 
 export interface ApplicationCardsViewProps {
   applications: ApplicationRecord[];

@@ -1,13 +1,15 @@
 import React from 'react';
 import { cx } from './cx';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'destructive';
+export type ButtonSize = 'sm' | 'md' | 'lg' | 'compact';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   isLoading?: boolean;
+  pending?: boolean;
+  pendingLabel?: string;
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
 }
@@ -19,6 +21,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       variant = 'secondary',
       size = 'md',
       isLoading = false,
+      pending = false,
+      pendingLabel,
       disabled,
       startIcon,
       endIcon,
@@ -30,11 +34,14 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const baseClasses =
       'inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none cursor-pointer whitespace-nowrap select-none';
 
+    const loading = isLoading || pending;
+    const normalizedSize = size === 'compact' ? 'sm' : size;
+    const normalizedVariant = variant === 'destructive' ? 'danger' : variant;
     const sizeClasses = {
       sm: 'text-xs h-8 px-3 gap-1.5 rounded-lg',
       md: 'text-sm h-9 px-4 gap-2 rounded-lg',
       lg: 'text-base h-11 px-5 gap-2.5 rounded-xl',
-    }[size];
+    }[normalizedSize];
 
     const variantClasses = {
       primary:
@@ -47,16 +54,16 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         'bg-transparent hover:bg-cv-surface-muted text-cv-text-muted hover:text-cv-text focus-visible:ring-cv-focus   ',
       danger:
         'bg-cv-blocker hover:bg-cv-blocker-hover text-cv-on-accent shadow-sm focus-visible:ring-cv-focus border border-cv-blocker',
-    }[variant];
+    }[normalizedVariant];
 
     return (
       <button
         ref={ref}
-        disabled={disabled || isLoading}
+        disabled={disabled || loading}
         className={cx(baseClasses, sizeClasses, variantClasses, className)}
         {...props}
       >
-        {isLoading && (
+        {loading && (
           <svg
             className="animate-spin -ml-1 h-4 w-4 text-current"
             xmlns="http://www.w3.org/2000/svg"
@@ -79,9 +86,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             />
           </svg>
         )}
-        {!isLoading && startIcon}
-        <span>{children}</span>
-        {!isLoading && endIcon}
+        {!loading && startIcon}
+        <span>{loading && pendingLabel ? pendingLabel : children}</span>
+        {!loading && endIcon}
       </button>
     );
   }

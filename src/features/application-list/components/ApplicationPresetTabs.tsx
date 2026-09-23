@@ -1,6 +1,6 @@
 import React from 'react';
-import { ApplicationPresetCounts } from '@/src/api/contracts';
-import { cx } from '@/src/ui/cx';
+import { ApplicationPresetCounts } from '@/api/contracts';
+import { cx } from '@/ui/cx';
 
 export type PresetTabKey = 'all' | 'attention' | 'open' | 'preparation' | 'recruitment' | 'closed';
 

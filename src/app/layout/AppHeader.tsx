@@ -1,5 +1,5 @@
 import React from 'react';
-import { LtrText } from '@/src/ui/LtrText';
+import { LtrText } from '@/ui/LtrText';
 
 export interface AppHeaderProps {
   onNewApplication?: () => void;

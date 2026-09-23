@@ -1,6 +1,6 @@
 import React from 'react';
-import { NextAction } from '@/src/api/contracts';
-import { Button } from '@/src/ui/Button';
+import { NextAction } from '@/api/contracts';
+import { Button } from '@/ui/Button';
 
 export interface ApplicationNextActionProps {
   nextAction?: NextAction | null;

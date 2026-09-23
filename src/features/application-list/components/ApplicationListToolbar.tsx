@@ -1,9 +1,9 @@
 import React from 'react';
-import { PreparationStage, RecruitmentStage } from '@/src/api/contracts';
-import { ViewSwitch, ApplicationViewType } from '@/src/ui/ViewSwitch';
-import { Input } from '@/src/ui/Input';
-import { Select } from '@/src/ui/Select';
-import { Button } from '@/src/ui/Button';
+import { PreparationStage, RecruitmentStage } from '@/api/contracts';
+import { ViewSwitch, ApplicationViewType } from '@/ui/ViewSwitch';
+import { Input } from '@/ui/Input';
+import { Select } from '@/ui/Select';
+import { Button } from '@/ui/Button';
 
 export interface ApplicationListToolbarProps {
   search: string;

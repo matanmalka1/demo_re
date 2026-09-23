@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Dialog } from '@/src/ui/Dialog';
-import { Button } from '@/src/ui/Button';
-import { Input } from '@/src/ui/Input';
+import { Dialog } from '@/ui/Dialog';
+import { Button } from '@/ui/Button';
+import { Input } from '@/ui/Input';
 
 export interface NewApplicationDialogProps {
   isOpen: boolean;

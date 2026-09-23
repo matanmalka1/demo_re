@@ -2,14 +2,16 @@ import React from 'react';
 import { cx } from './cx';
 
 export interface EmptyStateProps {
+  children?: React.ReactNode;
   icon?: React.ReactNode;
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   action?: React.ReactNode;
   className?: string;
 }
 
 export const EmptyState: React.FC<EmptyStateProps> = ({
+  children,
   icon,
   title,
   description,
@@ -28,10 +30,9 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
           {icon}
         </div>
       )}
-      <h3 className="text-base font-semibold text-cv-text mb-1">{title}</h3>
-      <p className="text-sm text-cv-text-muted max-w-sm mb-5 text-balance">
-        {description}
-      </p>
+      {title && <h3 className="text-base font-semibold text-cv-text mb-1">{title}</h3>}
+      {description && <p className="text-sm text-cv-text-muted max-w-sm mb-5 text-balance">{description}</p>}
+      {children}
       {action && <div>{action}</div>}
     </div>
   );

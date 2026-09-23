@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ApplicationRecord, RecruitmentStage, RecruitmentUpdatePayload } from '@/src/api/contracts';
-import { Dialog } from '@/src/ui/Dialog';
-import { Button } from '@/src/ui/Button';
-import { Select } from '@/src/ui/Select';
-import { Input } from '@/src/ui/Input';
-import { LtrText } from '@/src/ui/LtrText';
+import { ApplicationRecord, RecruitmentStage, RecruitmentUpdatePayload } from '@/api/contracts';
+import { Dialog } from '@/ui/Dialog';
+import { Button } from '@/ui/Button';
+import { Select } from '@/ui/Select';
+import { Input } from '@/ui/Input';
+import { LtrText } from '@/ui/LtrText';
 
 export interface RecruitmentUpdateDialogProps {
   application: ApplicationRecord | null;

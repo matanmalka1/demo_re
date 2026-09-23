@@ -1,5 +1,5 @@
-import { PreparationStage, RecruitmentStage, ApplicationStatus } from '@/src/api/contracts';
-import { Tone } from '@/src/ui/tone';
+import { PreparationStage, RecruitmentStage, ApplicationStatus } from '@/api/contracts';
+import { Tone } from '@/ui/tone';
 
 export interface StagePresentation {
   label: string;

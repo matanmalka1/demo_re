@@ -8,13 +8,13 @@ export interface SelectOption {
 }
 
 export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
-  options: SelectOption[];
+  options?: SelectOption[];
   label?: string;
   isInvalid?: boolean;
 }
 
 export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  ({ className, options, label, isInvalid, disabled, ...props }, ref) => {
+  ({ children, className, options, label, isInvalid, disabled, ...props }, ref) => {
     return (
       <div className="relative inline-flex items-center w-full">
         <select
@@ -29,7 +29,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           )}
           {...props}
         >
-          {options.map((option) => (
+          {options?.map((option) => (
             <option
               key={option.value}
               value={option.value}
@@ -38,7 +38,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             >
               {option.label}
             </option>
-          ))}
+          )) ?? children}
         </select>
         <div className="absolute left-2.5 pointer-events-none text-cv-text-muted">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -1,4 +1,4 @@
-export type Tone = 'neutral' | 'primary' | 'success' | 'warning' | 'danger' | 'info';
+export type Tone = 'neutral' | 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'progress' | 'blocker';
 
 export interface ToneStyles {
   bg: string;
@@ -43,5 +43,11 @@ export const toneStyles: Record<Tone, ToneStyles> = {
     text: 'text-cv-info',
     border: 'border-cv-info',
     dot: 'bg-cv-info',
+  },
+  progress: {
+    bg: 'bg-cv-accent-soft', text: 'text-cv-accent', border: 'border-cv-accent', dot: 'bg-cv-accent',
+  },
+  blocker: {
+    bg: 'bg-cv-blocker-soft', text: 'text-cv-blocker', border: 'border-cv-blocker', dot: 'bg-cv-blocker',
   },
 };

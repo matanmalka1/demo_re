@@ -1,5 +1,5 @@
 import React from 'react';
-import { cx } from '@/src/ui/cx';
+import { cx } from '@/ui/cx';
 
 export interface ApplicationListPaginationProps {
   currentPage: number;

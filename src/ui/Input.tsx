@@ -79,3 +79,20 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 );
 
 Input.displayName = 'Input';
+
+export type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+
+export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ className, ...props }, ref) => (
+    <textarea
+      ref={ref}
+      className={cx(
+        'min-h-24 w-full resize-y rounded-lg border border-cv-border bg-cv-surface px-3 py-2 text-sm text-cv-text placeholder:text-cv-text-muted focus:border-cv-field-focus focus:outline-none focus:ring-2 focus:ring-cv-focus disabled:opacity-50',
+        className,
+      )}
+      {...props}
+    />
+  ),
+);
+
+Textarea.displayName = 'Textarea';

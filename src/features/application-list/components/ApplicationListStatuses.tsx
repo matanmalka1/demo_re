@@ -1,10 +1,10 @@
 import React from 'react';
-import { PreparationStage, RecruitmentStage, OperationStatus } from '@/src/api/contracts';
+import { PreparationStage, RecruitmentStage, OperationStatus } from '@/api/contracts';
 import {
   PREPARATION_STAGE_INFO,
   RECRUITMENT_STAGE_INFO,
 } from '../model/applicationListPresentation';
-import { StatusBadge } from '@/src/ui/StatusBadge';
+import { StatusBadge } from '@/ui/StatusBadge';
 
 export interface ApplicationListStatusesProps {
   preparationStage: PreparationStage;

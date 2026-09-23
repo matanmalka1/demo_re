@@ -5,7 +5,7 @@ import {
   RecruitmentStage,
   ApplicationPresetCounts,
   RecruitmentUpdatePayload,
-} from '@/src/api/contracts';
+} from '@/api/contracts';
 import {
   fetchApplications,
   clearNextAction,
@@ -15,8 +15,8 @@ import {
   deleteApplication,
   createApplication,
   resetDatabase,
-} from '@/src/api/applications';
-import { ApplicationViewType } from '@/src/ui/ViewSwitch';
+} from '@/api/applications';
+import { ApplicationViewType } from '@/ui/ViewSwitch';
 import { ApplicationAttentionSummary } from '../components/ApplicationAttentionSummary';
 import { ApplicationPresetTabs, PresetTabKey } from '../components/ApplicationPresetTabs';
 import { ApplicationListToolbar } from '../components/ApplicationListToolbar';
@@ -28,13 +28,13 @@ import { CloseApplicationDialog } from '../components/CloseApplicationDialog';
 import { DeleteApplicationDialog } from '../components/DeleteApplicationDialog';
 import { RecruitmentUpdateDialog } from '../components/RecruitmentUpdateDialog';
 import { NewApplicationDialog } from '../components/NewApplicationDialog';
-import { EmptyState } from '@/src/ui/EmptyState';
-import { Skeleton } from '@/src/ui/Skeleton';
-import { LiveRegion } from '@/src/ui/LiveRegion';
-import { ErrorCallout } from '@/src/ui/ErrorCallout';
-import { Dialog } from '@/src/ui/Dialog';
-import { Button } from '@/src/ui/Button';
-import { LtrText } from '@/src/ui/LtrText';
+import { EmptyState } from '@/ui/EmptyState';
+import { Skeleton } from '@/ui/Skeleton';
+import { LiveRegion } from '@/ui/LiveRegion';
+import { ErrorCallout } from '@/ui/ErrorCallout';
+import { Dialog } from '@/ui/Dialog';
+import { Button } from '@/ui/Button';
+import { LtrText } from '@/ui/LtrText';
 import { formatDateTimeHebrew } from '../model/applicationListPresentation';
 
 const VIEW_STORAGE_KEY = 'cv_tailor_view_preference';
